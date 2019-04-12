@@ -1,3 +1,29 @@
 {
-  "name": ""
+  "name": "exchromeinst",
+  "version": "0.1",
+  "manifest_version": 2,
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "contextMenus",
+    "declarativeContent",
+    "tabs",
+    "downloads",
+    "activeTab"
+  ],
+  "page_action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "32": "images/icon32.png"
+    },
+    "default_title": "ExChromeInst"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.nskgortrans.ru/*"],
+      "js": ["contentScript.js"]
+    }
+  ]
 }
