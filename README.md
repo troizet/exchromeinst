@@ -1,0 +1,1 @@
+This extension for chrome downloaded pictures with quality 1080w from instagram
