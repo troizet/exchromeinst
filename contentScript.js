@@ -1,10 +1,16 @@
 chrome.runtime.onMessage.addListener(function(msg, sender ,sendResponse){
-   // if(msg.text === 'mcall'){
-       // let images = document.getElementsByTagName('img');
         let images = document.getElementsByTagName('img');
-        console.log(images[0].src);
-       // chrome.downloads.download({ url: images[0].src });
-        sendResponse(images[0].src);
-      //  chrome.runtime.sendMessage(images[0].src);
-   // }
+        let regexp = /750w,(.*) 1080w/g;
+        let result = [];
+
+        for(let i = 0; i < images.length; i++){
+            let match = images[i].srcset.match(/ 1080w/g);
+            if(match !== null){
+                let source;
+                while(source = regexp.exec(images[i].srcset)) {
+                    result.push(source[1]);
+                }
+            }
+        }
+        sendResponse(result);
 });
